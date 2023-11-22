@@ -1,0 +1,180 @@
+openapi: 3.0.3
+info:
+  title: app-react
+  description: API definition
+  version: 1.0.0
+  license:
+    name: AGPL-3.0-or-later
+    url: https://spdx.org/licenses/AGPL-3.0-or-later.html
+  termsOfService: https://spdx.org/licenses/AGPL-3.0-or-later.html
+  contact:
+    name: Bulldog and Fisk
+    email: contact@bulldogandfisk.com
+    url: https://github.com/bulldogandfisk/bandf-applications
+servers:
+  - url: http://localhost:3000/dev
+    description: Dev server
+tags:
+  - name: public
+    description: This is a public route.
+  - name: private
+    description: This is a private (authenticated) route.
+paths:
+  /view/{viewName}/{flags}:
+    get:
+      x-actor-id: view
+      tags:
+        - public
+      description: >
+        General view handler
+      parameters:
+        - in: path
+          name: viewName
+          schema:
+            type: string
+          required: true
+          description: The ui to view
+        - in: path
+          name: flags
+          schema:
+            type: string
+          description: >
+            Will slot any data following viewName
+      responses:
+        "200":
+          $ref: "#/components/responses/200"
+        "400":
+          $ref: "#/components/responses/400"
+        "404":
+          $ref: "#/components/responses/404"
+        "500":
+          $ref: "#/components/responses/500"
+  /state:
+    get:
+      x-actor-id: state
+      tags:
+        - public
+      description: >
+        Returns context info for this UI render
+      responses:
+        "200":
+          description: Contains session and user data, if any
+          content:
+            application/json:
+              schema:
+                type: object
+        "400":
+          $ref: "#/components/responses/400"
+        "404":
+          $ref: "#/components/responses/404"
+        "500":
+          $ref: "#/components/responses/500"
+  /mail/code:
+    post:
+      x-actor-id: mail-code
+      tags:
+        - public
+        - auth
+      description: >
+        Sends a confirmation code on signup
+      requestBody:
+        description: >
+          Info to send
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                name:
+                  type: string
+                provider:
+                  type: string
+                  enum:
+                    - sendgrid
+                    - mailgun
+                  default: sendgrid
+              required:
+                - email
+                - name
+      responses:
+        "200":
+          description: Successfully sent code
+          content:
+            application/json:
+              schema:
+                type: object
+        "400":
+          $ref: "#/components/responses/400"
+        "404":
+          $ref: "#/components/responses/404"
+        "500":
+          $ref: "#/components/responses/500"
+  /mail/support:
+    post:
+      x-actor-id: mail-support
+      description: >
+        Emails support with data about errors
+      requestBody:
+        description: >
+          What to send and to who
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  type: object
+                provider:
+                  type: string
+                  enum:
+                    - sendgrid
+                    - mailgun
+                  default: sendgrid
+              required:
+                - context
+      responses:
+        "200":
+          description: Successfully emailed support
+          content:
+            application/json:
+              schema:
+                type: object
+        "400":
+          $ref: "#/components/responses/400"
+        "404":
+          $ref: "#/components/responses/404"
+        "500":
+          $ref: "#/components/responses/500"
+components:
+  responses:
+    "200":
+      description: General OK response
+      content:
+        text/html:
+          schema:
+            type: string
+    "303":
+      description: See other. A type of redirect.
+    "400":
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            type: object
+    "404":
+      description: Not found
+      content:
+        application/json:
+          schema:
+            type: string
+    "500":
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            type: object

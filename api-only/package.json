@@ -1,0 +1,22 @@
+{
+  "name": "app-api-only",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "description": "Zoom webhook implementation",
+  "license": "AGPL-3.0-or-later",
+  "author": {
+    "name": "Bulldog and Fisk",
+    "email": "contact@bulldogandfisk.com",
+    "url": "https://github.com/bulldogandfisk/bandf-applications"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": ""
+  },
+  "dependencies": {
+    "jsrsasign": "^10.8.6"
+  }
+}

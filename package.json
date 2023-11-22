@@ -1,11 +1,15 @@
 {
   "name": "bandf-applications",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "type": "module",
+  "description": "A collection of drop-in applications for Bulldog and Fisk repos",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
+  "author": {
+    "name": "Bulldog and Fisk",
+    "email": "contact@bulldogandfisk.com",
+    "url": "https://github.com/bulldogandfisk/bandf-applications"
+  },
+  "license": "AGPL-3.0-or-later"
 }

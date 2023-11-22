@@ -1,0 +1,42 @@
+{
+  "name": "app-react",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "description": "A React starter kit",
+  "author": {
+    "name": "Bulldog and Fisk",
+    "email": "contact@bulldogandfisk.com",
+    "url": "https://github.com/bulldogandfisk/bandf-applications"
+  },
+  "license": "AGPL-3.0-or-later",
+  "source": [
+    "views/index.html"
+  ],
+  "browserslist": [
+    "last 2 versions"
+  ],
+  "@parcel/transformer-js": {
+    "inlineFS": false,
+    "inlineEnvironment": true
+  },
+  "scripts": {
+    "start": "parcel --no-source-maps --cache-dir=.parcel-cache --no-cache --port 3001 --dist-dir views/dist --open",
+    "build": "parcel build --no-source-maps --cache-dir=.parcel-cache --no-cache --dist-dir views/dist --log-level info --reporter @parcel/reporter-bundle-analyzer"
+  },
+  "devDependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.18",
+    "@mui/material": "^5.14.18",
+    "@mui/x-date-pickers": "^6.18.1",
+    "i18next": "^23.7.6",
+    "i18next-browser-languagedetector": "^7.2.0",
+    "local-storage-proxy": "^4.0.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-i18next": "^13.5.0",
+    "react-router-dom": "^6.19.0",
+    "zustand": "^4.4.6"
+  }
+}

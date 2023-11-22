@@ -1,0 +1,4 @@
+environment:
+  APP_AUTHOR: contact@bulldogandfisk.com
+  API_ONLY: true
+  ZOOM_WEBHOOK_SECRET_TOKEN: ${ssm:zoom.hook.secretToken.${sls:stage}}
