@@ -1,5 +1,5 @@
 {
-  "name": "app-api-only",
+  "name": "api-only",
   "version": "1.0.0",
   "type": "module",
   "private": true,

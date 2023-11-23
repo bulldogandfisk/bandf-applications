@@ -1,7 +1,7 @@
 ---
 openapi: 3.0.3
 info:
-  title: app-html
+  title: html
   description: Base starter OAS
   version: 1.0.0
   license:

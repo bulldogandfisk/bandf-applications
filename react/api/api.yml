@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: app-react
+  title: react
   description: API definition
   version: 1.0.0
   license:
