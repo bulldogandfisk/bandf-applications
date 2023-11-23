@@ -1,0 +1,31 @@
+{
+    "name": "react-basic",
+    "version": "1.0.0",
+    "type": "module",
+    "private": true,
+    "description": "A basic React setup",
+    "author": {
+        "name": "Bulldog and Fisk",
+        "email": "contact@bulldogandfisk.com",
+        "url": "https://github.com/bulldogandfisk/bandf-applications"
+    },
+    "license": "AGPL-3.0-or-later",
+    "source": [
+        "views/index.html"
+    ],
+    "browserslist": [
+        "last 2 versions"
+    ],
+    "@parcel/transformer-js": {
+        "inlineFS": false,
+        "inlineEnvironment": true
+    },
+    "scripts": {
+        "start": "parcel --no-source-maps --cache-dir=.parcel-cache --no-cache --port 3001 --dist-dir views/dist --open",
+        "build": "parcel build --no-source-maps --cache-dir=.parcel-cache --no-cache --dist-dir views/dist --log-level info --reporter @parcel/reporter-bundle-analyzer"
+    },
+    "devDependencies": {
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    }
+}
