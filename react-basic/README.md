@@ -2,5 +2,3 @@
 
 A basic `React` setup.
 
-
-
