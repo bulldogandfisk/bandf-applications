@@ -1,15 +1,33 @@
 {
   "name": "bandf-applications",
   "version": "1.0.0",
+  "private": true,
   "type": "module",
-  "description": "A collection of drop-in applications for Bulldog and Fisk repos",
+  "license": "AGPL-3.0-or-later",
+  "description": "A collection of drop-in applications for the Bulldog and Fisk platform",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "index": "node index.js",
+    "prepare": "husky install"
   },
   "author": {
     "name": "Bulldog and Fisk",
     "email": "contact@bulldogandfisk.com",
     "url": "https://github.com/bulldogandfisk/bandf-applications"
   },
-  "license": "AGPL-3.0-or-later"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bulldogandfisk/bandf-applications"
+  },
+  "bugs": {
+    "url": "https://github.com/bulldogandfisk/bandf-applications/issues",
+    "email": "project@hostname.com"
+  },
+  "homepage": "https://github.com/bulldogandfisk/bandf-applications",
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "fast-glob": "^3.3.2",
+    "husky": "^8.0.3"
+  }
 }

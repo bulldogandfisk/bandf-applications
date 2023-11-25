@@ -1,4 +1,4 @@
-# React basic example
+# react-basic
 
 A basic `React` setup.
 
