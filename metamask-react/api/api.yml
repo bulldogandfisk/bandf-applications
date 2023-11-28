@@ -134,6 +134,14 @@ components:
         text/html:
           schema:
             type: string
+    "302":
+      description: Found. Generally used for presigned urls.
+      content:
+        text/html:
+          schema:
+            type: string
+    "303":
+      description: See other. A type of redirect.
     "400":
       description: Bad request
       content:
@@ -170,3 +178,4 @@ components:
         application/json:
           schema:
             type: object
+
