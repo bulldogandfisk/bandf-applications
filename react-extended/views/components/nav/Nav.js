@@ -82,7 +82,7 @@ export function Nav({ state }) {
     const handleCloseUserMenu = event => {
         event.preventDefault();
         const target = event.currentTarget?.attributes?.name?.value?.toLowerCase();
-        switch (target) {
+        switch(target) {
             case 'logout': {
                 state.logOut();
                 break;

@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "type": "module",
   "private": true,
-  "description": "A React starter kit",
+  "description": "A React starter kit demonstrating most of what you would need to do in such an application, as well as a login system with emailed verification codes.",
   "author": {
     "name": "Bulldog and Fisk",
     "email": "contact@bulldogandfisk.com",
-    "url": "https://github.com/bulldogandfisk/bandf-applications"
+    "url": "https://github.com/bulldogandfisk"
   },
   "license": "AGPL-3.0-or-later",
   "source": [
@@ -21,22 +21,21 @@
     "inlineEnvironment": true
   },
   "scripts": {
-    "start": "parcel --no-source-maps --cache-dir=.parcel-cache --no-cache --port 3001 --dist-dir views/dist --open",
     "build": "parcel build --no-source-maps --cache-dir=.parcel-cache --no-cache --dist-dir views/dist --log-level info --reporter @parcel/reporter-bundle-analyzer"
   },
   "devDependencies": {
-    "@emotion/react": "^11.11.1",
+    "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.14.18",
-    "@mui/material": "^5.14.18",
-    "@mui/x-date-pickers": "^6.18.1",
-    "i18next": "^23.7.6",
+    "@mui/icons-material": "^5.15.10",
+    "@mui/material": "^5.15.10",
+    "@mui/x-date-pickers": "^6.19.4",
+    "i18next": "^23.9.0",
     "i18next-browser-languagedetector": "^7.2.0",
     "local-storage-proxy": "^4.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-i18next": "^13.5.0",
-    "react-router-dom": "^6.19.0",
-    "zustand": "^4.4.6"
+    "react-i18next": "^14.0.5",
+    "react-router-dom": "^6.22.1",
+    "zustand": "^4.5.1"
   }
 }

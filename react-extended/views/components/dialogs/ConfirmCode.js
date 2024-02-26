@@ -27,7 +27,7 @@ export const ConfirmCode = ({ state, open, handleClose, checkCode }) => {
 
         // Only accept digits
         //
-        if (/^\d$/.test(value) || value === '') {
+        if(/^\d$/.test(value) || value === '') {
             const codeDigits = [...digits];
             codeDigits[index] = value;
             setDigits(codeDigits);
@@ -35,11 +35,11 @@ export const ConfirmCode = ({ state, open, handleClose, checkCode }) => {
 
             // If a digit is entered and there is a next input, focus it
             //
-            if (value && index < inputReferences.length - 1) {
+            if(value && index < inputReferences.length - 1) {
                 inputReferences[index + 1].current.focus();
             } else {
                 const enteredCode = codeDigits.join('');
-                if (checkCode(enteredCode)) {
+                if(checkCode(enteredCode)) {
                     handleClose(true);
                 } else {
                     setErrorMessage('Incorrect key. Please try again.');
@@ -49,7 +49,7 @@ export const ConfirmCode = ({ state, open, handleClose, checkCode }) => {
     };
 
     const handleKeyDown = (index, event) => {
-        if (event.key === 'Backspace' && digits[index] === '' && index > 0) {
+        if(event.key === 'Backspace' && digits[index] === '' && index > 0) {
             inputReferences[index - 1].current.focus();
         }
     };
@@ -91,6 +91,11 @@ export const ConfirmCode = ({ state, open, handleClose, checkCode }) => {
                             </Grid>
                         ))}
                     </Grid>
+                    {/*<Box mt={2} textAlign="center">*/}
+                    {/*    <Button variant="contained" color="primary" onClick={handleSubmit}>*/}
+                    {/*        Submit*/}
+                    {/*    </Button>*/}
+                    {/*</Box>*/}
                     {errorMessage && (
                         <Box mt={2} textAlign="center">
                             <Typography color="error">{errorMessage}</Typography>

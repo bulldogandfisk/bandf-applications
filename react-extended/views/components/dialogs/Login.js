@@ -31,9 +31,13 @@ export const Login = ({ state, open, handleClose }) => {
     const handleSubmit = async event => {
         event.preventDefault();
 
+        state.logIn();
+        handleClose();
+        return;
+
         const response = await fetch(`${apiBase}/login`, {
             method: 'POST',
-            cache: 'no-cache',
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -45,9 +49,11 @@ export const Login = ({ state, open, handleClose }) => {
 
         const { errors, data } = await response.json();
 
-        if (errors) {
+        if(errors) {
             throw new Error(errors.message || 'Login Error');
         }
+
+        console.log('LOGIN DATA:', data, state.answers());
 
         state.logIn();
         handleClose();

@@ -32,7 +32,10 @@ export const builder = () => {
                                   secondary: grey[500]
                               }
                           }
-                        :
+                        : //     primary ="#EFA414"
+                          // secondary ="#0071BF"
+                          // onPrimary ="#181818"
+
                           {
                               // Palette for light mode
                               //

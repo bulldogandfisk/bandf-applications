@@ -1,4 +1,4 @@
-export default async ({ payload, STDLIB, Event, Context, Services, Channels }) => {
+export default async ({ payload, STDLIB, Event, Context, Services }) => {
     try {
         const { context } = payload.message;
         const email = 'contact@bulldogandfisk.com';
@@ -18,13 +18,14 @@ export default async ({ payload, STDLIB, Event, Context, Services, Channels }) =
 
         // Services.get('mail/send')({
         //     provider: 'mailgun',
-        //     to: process.env.MAIL_TO_ADDRESS,
+        //     to: 'contact@bulldogandfisk.com',
         //     subject: 'test subject',
         //     text: 'the text',
         //     html: '<h1>the html</h1>',
         //     template: {
         //         path: 'auth/mail-support',
         //         data: {
+        //             logoUrl: process.env.LOGO_URL,
         //             context: `<p>${body.join('')}</p>`,
         //             email: context.email,
         //             name: `${context.firstName} ${context.lastName}`

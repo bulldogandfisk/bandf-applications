@@ -17,7 +17,7 @@ export const State = ({} = {}) => {
         storageEventListener: true
     });
 
-    // #localStore is now an `ls` instance. What `ls` does is allow you to Work with window.localStorage as
+    // #localStore is now an `ls` instance. What `ls` does is allow you to work with window.localStorage as
     // if it were an object. #localStore.answers is returned via #subscribe, which attaches it to a State hook
     // in App.js, provides this #answers reference to components, which bind #answers to forms and UI inputs.
     //

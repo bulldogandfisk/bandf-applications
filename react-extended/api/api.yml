@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: react-extended
+  title: react
   description: API definition
   version: 1.0.0
   license:
@@ -10,7 +10,7 @@ info:
   contact:
     name: Bulldog and Fisk
     email: contact@bulldogandfisk.com
-    url: https://github.com/bulldogandfisk/bandf-applications
+    url: https://github.com/bulldogandfisk
 servers:
   - url: http://localhost:3000/dev
     description: Dev server
@@ -196,4 +196,3 @@ components:
         application/json:
           schema:
             type: object
-

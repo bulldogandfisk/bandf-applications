@@ -28,7 +28,7 @@ export const Start = ({ state }) => {
     };
 
     useEffect(() => {
-        if (accountCreationStatus !== null) {
+        if(accountCreationStatus !== null) {
             setSnackbarOpen(true);
         }
     }, [accountCreationStatus]);
@@ -40,12 +40,12 @@ export const Start = ({ state }) => {
     };
     const closeCodeDialog = success => {
         setCodeDialogOpen(false);
-        if (success) {
+        if(success) {
             routerNavigate('/page');
         }
     };
     const checkCode = candidate => {
-        if (candidate === confirmedCode) {
+        if(candidate === confirmedCode) {
             return true;
         }
     };
@@ -58,6 +58,8 @@ export const Start = ({ state }) => {
         setForgotDialogOpen(false);
     };
 
+    // Create account
+    //
     const handleSubmit = event => {
         event.preventDefault();
         state.storeAnswers(answers);
@@ -73,7 +75,7 @@ export const Start = ({ state }) => {
                 email: answers.email
             })
         }).then(async response => {
-            if (response.errors) {
+            if(response.errors) {
                 throw new Error(response.errors.message || 'Confirmation code fetch error');
             }
             const codeData = await response.json();
@@ -128,9 +130,9 @@ export const Start = ({ state }) => {
                         onClose={handleSnackbarClose}>
                         {accountCreationStatus === 'succeeded'
                             ? 'Account Created'
-                            : accountCreationStatus === null
+                            : (accountCreationStatus === null
                               ? ''
-                              : accountCreationStatus}
+                              : accountCreationStatus)}
                     </Alert>
                 </Snackbar>
             )}

@@ -22,7 +22,7 @@ export const CookieAgree = () => {
         setOpen(true);
     };
 
-    if (cookies.accepted === true) {
+    if(cookies.accepted === true) {
         return <></>;
     }
 

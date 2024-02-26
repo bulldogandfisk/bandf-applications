@@ -1,4 +1,4 @@
-export default async ({ payload, STDLIB, Event, Context, Services, Channels }) => {
+export default async ({ payload, STDLIB, Event, Context, Services }) => {
     const view = payload.params.viewName;
     const flags = payload.params.flags;
 

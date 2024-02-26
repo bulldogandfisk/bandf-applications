@@ -1,4 +1,4 @@
-export default async ({ payload, STDLIB, Event, Context, Services, Channels }) => {
+export default async ({ payload, STDLIB, Event, Context, Services }) => {
     // Get application state somehow and return it.
     // This isn't necessary, but you'll often find the need to fetch some
     // context, resolved values, dynamic endpoint urls, and so forth.

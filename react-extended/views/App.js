@@ -10,18 +10,17 @@ import { builder } from './state/theme.js';
 import { Router } from './components/Router.js';
 import { ErrorBoundary } from './components/ErrorBoundary.js';
 
-const { origin, pathname, search } = window.location;
-
 // When the compiler runs it will interpolate these environment variables. At runtime (rendered on
 // client) these are resolved as string values.
 //
-const localDomain = process.env.LOCAL_DOMAIN;
+const { origin, pathname, search } = window.location;
 const isDeployed = process.env.DEPLOY_BUILD === 'true';
 const deployedStage = process.env.DEPLOYED_STAGE;
+const offlinePort = process.env.DEPLOYED_PORT;
 const deployedEnvironment = process.env.NODE_ENV;
 const localApiKey = process.env.LOCAL_SERVER_API_KEY;
 const basename = `${deployedStage}/view/index`;
-const apiBase = isDeployed ? `${origin}/${deployedStage}` : `${localDomain}/${deployedStage}`;
+const apiBase = isDeployed ? `${origin}/${deployedStage}` : `http://localhost:${offlinePort}/${deployedStage}`;
 
 // When running the local development server (localhost:3001/) there is no subpath (eg /view/index).
 // When deployed that path exists. Keep local paths/environment consistent.
@@ -79,7 +78,6 @@ export const App = ({}) => {
             state.session = create((set, get) => ({
                 token: 'abcdefg',
                 origin,
-                localDomain,
                 isDeployed,
                 deployedStage,
                 basename,

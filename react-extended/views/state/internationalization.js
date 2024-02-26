@@ -637,6 +637,6 @@ i18n
         },
 
         interpolation: {
-            escapeValue: false
+            escapeValue: false // Not needed for react as it escapes by default
         }
     });

@@ -1,14 +1,2 @@
 environment:
-  # Application owner contact.
   APP_AUTHOR: contact@bulldogandfisk.com
-  # The address support email will be sent to.
-  MAIL_TO_ADDRESS: <your@email.here>
-  # Set to the value of ReplyTo for all mail.
-  MAIL_FROM_ADDRESS: ${ssm:mail.fromAddress}
-  # Set to the value of your Mailgun apiKey.
-  MAILGUN_API_KEY: ${ssm:mailgun.apiKey.${sls:stage}}
-  # Set to the value of your Mailgun domain.
-  # @see https://app.mailgun.com/settings/api_security
-  MAILGUN_DOMAIN: ${ssm:mailgun.domain.${sls:stage}}
-  # Set to the value of your Sendgrid apiKey.
-  SENDGRID_API_KEY: ${ssm:sendgrid.apiKey.${sls:stage}}
