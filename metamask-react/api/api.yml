@@ -1,8 +1,7 @@
----
 openapi: 3.0.3
 info:
   title: metamask-react
-  description: Base starter OAS
+  description: Basic React application with Metamask login support
   version: 1.0.0
   license:
     name: AGPL-3.0-or-later
@@ -11,21 +10,20 @@ info:
   contact:
     name: Bulldog and Fisk
     email: contact@bulldogandfisk.com
-    url: https://github.com/bulldogandfisk/bandf-applications
+    url: https://github.com/bulldogandfisk
 servers:
   - url: http://localhost:3000/dev
     description: Dev server
 tags:
-  - name: public
-    description: This is a public route.
-  - name: private
-    description: This is a private (authenticated) route.
+  - name: tagexample
+    description: >
+      You can set tags here in the root or per-path.
+      If you do set path-level tags you need to define them here first.
+      See https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#operation-object
 paths:
   /view/{viewName}/{flags}:
     get:
       x-actor-id: view
-      tags:
-        - public
       description: >
         General view handler
       parameters:
@@ -50,82 +48,6 @@ paths:
           $ref: "#/components/responses/404"
         "500":
           $ref: "#/components/responses/500"
-  /token/issue:
-    post:
-      x-actor-id: token-issue
-      tags:
-        - public
-      description: >
-        Get a Bearer token as jwt.
-      requestBody:
-        description: >
-          username/password (or Metamask equivalents)
-        required: true
-        content:
-          application/json:
-            schema:
-              oneOf:
-                - type: object
-                  properties:
-                    userid:
-                      type: string
-                      pattern: '^0x[\dA-Fa-f]{40}$'
-                      description: Ethereum public address
-                    password:
-                      type: string
-                      pattern: '^0x[\dA-Fa-f]{130}$'
-                      description: Metamask signed request
-                    nonce:
-                      type: string
-                      description: The nonce used for signing request. Can be empty.
-                  required:
-                    - userid
-                    - password
-                - type: object
-                  properties:
-                    userid:
-                      type: string
-                      format: email
-                    password:
-                      type: string
-                      minLength: 8
-                      maxLength: 64
-                  required:
-                    - userid
-                    - password
-      responses:
-        "200":
-          description: Token issue
-          content:
-            application/json:
-              schema:
-                type: object
-        "403":
-          $ref: "#/components/responses/401"
-        "500":
-          $ref: "#/components/responses/500"
-  /token/check:
-    get:
-      x-actor-id: token-check
-      tags:
-        - public
-      description: >
-        Check if a JWT is still valid. 200 if so, 400 if not.
-      parameters:
-        - in: header
-          name: authorization
-          schema:
-            type: string
-#          required: true
-      responses:
-        "200":
-          description: Token check
-          content:
-            application/json:
-              schema:
-                type: object
-        "400":
-          $ref: "#/components/responses/400"
 components:
   responses:
     "200":
@@ -178,4 +100,3 @@ components:
         application/json:
           schema:
             type: object
-

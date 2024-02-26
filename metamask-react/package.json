@@ -1,34 +1,32 @@
 {
-    "name": "metamask-react",
-    "version": "1.0.0",
-    "type": "module",
-    "private": true,
-    "description": "A Metamask sign-in done with React",
-    "author": {
-        "name": "Bulldog and Fisk",
-        "email": "contact@bulldogandfisk.com",
-        "url": "https://github.com/bulldogandfisk/bandf-applications"
-    },
-    "license": "AGPL-3.0-or-later",
-    "source": [
-        "views/index.html"
-    ],
-    "browserslist": [
-        "last 2 versions"
-    ],
-    "@parcel/transformer-js": {
-        "inlineFS": false,
-        "inlineEnvironment": true
-    },
-    "scripts": {
-        "start": "parcel --no-source-maps --cache-dir=.parcel-cache --no-cache --port 3001 --dist-dir views/dist --open",
-        "build": "parcel build --no-source-maps --cache-dir=.parcel-cache --no-cache --dist-dir views/dist --log-level info --reporter @parcel/reporter-bundle-analyzer"
-    },
-    "devDependencies": {
-        "react": "^18.2.0"
-    },
-    "dependencies": {
-        "ethers": "^6.8.1",
-        "fast-jwt": "^3.3.2"
-    }
+  "name": "metamask-react",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "description": "An application for bandf demonstrating Metamask login",
+  "author": {
+    "name": "Bulldog and Fisk",
+    "email": "contact@bulldogandfisk.com",
+    "url": "https://github.com/bulldogandfisk"
+  },
+  "license": "AGPL-3.0-or-later",
+  "source": [
+    "views/index.html"
+  ],
+  "browserslist": [
+    "last 2 versions"
+  ],
+  "@parcel/transformer-js": {
+    "inlineFS": false,
+    "inlineEnvironment": true
+  },
+  "scripts": {
+    "build": "parcel build --no-source-maps --cache-dir=.parcel-cache --no-cache --dist-dir views/dist --log-level info --reporter @parcel/reporter-bundle-analyzer"
+  },
+  "devDependencies": {
+    "local-storage-proxy": "^4.0.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "zustand": "^4.5.1"
+  }
 }

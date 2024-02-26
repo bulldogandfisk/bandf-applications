@@ -1,3 +1,2 @@
 environment:
   APP_AUTHOR: contact@bulldogandfisk.com
-  JWT_SIGNING_KEY: ${ssm:jwt.signing.key}

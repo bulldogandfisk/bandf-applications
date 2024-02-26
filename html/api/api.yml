@@ -16,16 +16,15 @@ servers:
   - url: http://localhost:3000/dev
     description: Dev server
 tags:
-  - name: public
-    description: This is a public route.
-  - name: private
-    description: This is a private (authenticated) route.
+  - name: tagexample
+    description: >
+      You can set tags here in the root or per-path.
+      If you do set path-level tags you need to define them here first.
+      See https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#operation-object
 paths:
   /view/{viewName}/{flags}:
     get:
       x-actor-id: view
-      tags:
-        - public
       description: |
         General view handler
       parameters:

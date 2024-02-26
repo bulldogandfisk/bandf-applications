@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useCallback } from 'react';
-import {detectEthereumProvider} from './detect-provider.min.js';
+import { detectEthereumProvider } from './detect-provider.min.js';
 import './Metamask.css';
 
-export const Metamask = (props) => {
+export const Metamask = ({ children, store }) => {
     let state = {
         isLoggedIn: false
     };
+
+    const Store = store();
 
     const fetchJwtAndLogIn = async (userid, password) => {
         try {
@@ -14,31 +16,33 @@ export const Metamask = (props) => {
             let jwt = localStorage.getItem(jwtKey) || undefined;
 
             const fetchConfig = {
-                'cache': 'no-store', // These are internal "function calls" and should never be cached
+                cache: 'no-store', // These are internal "function calls" and should never be cached
                 redirect: 'follow',
                 referrerPolicy: 'no-referrer'
             };
 
             const headers = {
                 'Content-type': 'application/json',
-                'Accept': 'application/json'
+                Accept: 'application/json'
             };
 
             // Is store jwt still valid?
             // Note that it's ok if there is no jwt at all, still leads to "login again" flow w/ nonce.
             //
-            const tokenState = await fetch(`http://localhost:3000/dev/token/check`, {
+            const tokenState = await fetch(`${Store.apiBase()}/bandf/token/check`, {
                 headers: {
                     ...headers,
-                    'Authorization': jwt
+                    Authorization: jwt
                 },
                 ...fetchConfig,
                 method: 'GET'
-            }).then(response => response.json()).then(json => json);
+            })
+                .then(response => response.json())
+                .then(json => json);
 
             // #nonce is set if jwt is NOT valid.
             //
-            const nonce = (await tokenState).nonce;
+            const { nonce } = await tokenState;
 
             // Need a new #jwt.
             // Use #nonce to get a personal_sign and ask for a new #jwt issue.
@@ -52,32 +56,38 @@ export const Metamask = (props) => {
                 // Sign this request to login using this user's MM public address
                 // https://docs.metamask.io/guide/signing-data.html#signing-data-with-metamask
                 //
-                callBody.password = await ethereum.request({
-                    method: 'personal_sign',
-                    params: [nonce, await getSelectedAddress()]
-                }).catch(error => {
-                    // Signing error, such as canceling signing. Warn about this.
-                    //
-                    if (error.code === 4001) {
-                        throw new Error(`You must sign this Metamask request to log in`);
-                    }
-                    throw error;
-                });
+                callBody.password = await ethereum
+                    .request({
+                        method: 'personal_sign',
+                        params: [nonce, await getSelectedAddress()]
+                    })
+                    .catch(error => {
+                        // Signing error, such as canceling signing. Warn about this.
+                        //
+                        if (error.code === 4001) {
+                            throw new Error(`You must sign this Metamask request to log in`);
+                        }
+                        throw error;
+                    });
 
                 callBody.nonce = nonce;
 
-                const reply = await fetch(`http://localhost:3000/dev/token/issue`, {
+                const reply = await fetch(`${Store.apiBase()}/bandf/token/issue`, {
                     headers: {
                         ...headers,
-                        'x-error-message': 'Invalid login credentials'
+                        'x-error-message': 'Invalid signature'
                     },
                     ...fetchConfig,
                     method: 'POST',
                     body: JSON.stringify(callBody)
-                }).then(response => response.json()).catch(error => {
-                    throw error
-                });
+                })
+                    .then(response => response.json())
+                    .catch(error => {
+                        reply.error = error;
+                    });
 
+                // TODO: toast or other notification
+                //
                 if (reply.error) {
                     throw new Error(reply.error);
                 }
@@ -85,12 +95,15 @@ export const Metamask = (props) => {
                 jwt = reply.jwt;
                 localStorage.setItem(jwtKey, jwt);
 
-                headers['Authorization'] = `Bearer: ${jwt}`;
+                headers.Authorization = `Bearer: ${jwt}`;
 
-                localStorage.setItem(fetchKey, JSON.stringify({
-                    headers,
-                    ...fetchConfig
-                }));
+                localStorage.setItem(
+                    fetchKey,
+                    JSON.stringify({
+                        headers,
+                        ...fetchConfig
+                    })
+                );
             }
 
             state = {
@@ -98,17 +111,18 @@ export const Metamask = (props) => {
                 isLoggedIn: true,
                 jwt
             };
-
         } catch (error) {
             console.log(error);
         }
-    }
+    };
 
-    const getSelectedAddress = async () => (await ethereum.request({ method: 'eth_accounts' }))[0];
+    const getSelectedAddress = async () => {
+        const addresses = await ethereum.request({ method: 'eth_accounts' });
+        return addresses[0];
+    };
 
     const login = async event => {
-
-        if(state.isLoggedIn) {
+        if (state.isLoggedIn) {
             console.log('Already logged in');
             return;
         }
@@ -116,37 +130,38 @@ export const Metamask = (props) => {
         // #accounts is an array of addresses.
         // #selectedAddress shortcut to selected address.
         //
-        await ethereum.request({method: 'eth_requestAccounts'})
-        .then(async accounts => {
-            state = {
-                ...state,
-                isLoggedIn: false
-            };
-            await fetchJwtAndLogIn(await getSelectedAddress());
-        })
-        .catch(error => {
-            // error.code === 4001 > EIP-1193 userRejectedRequest error
-            //
-            console.error(error);
-        });
-    }
+        await ethereum
+            .request({ method: 'eth_requestAccounts' })
+            .then(async accounts => {
+                state = {
+                    ...state,
+                    isLoggedIn: false
+                };
+                await fetchJwtAndLogIn(await getSelectedAddress());
+            })
+            .catch(error => {
+                // error.code === 4001 > EIP-1193 userRejectedRequest error
+                //
+                console.error(error);
+            });
+    };
 
     const connectEvents = useCallback(() => {
-
         if (window.ethereum) {
             detectEthereumProvider()
-            .then(provider => {
-                state.provider = provider;
-                state.signer = provider.getSigner();
-            }).catch(error => {
-                state.error = error.message;
-            });
+                .then(provider => {
+                    state.provider = provider;
+                    state.signer = provider.getSigner();
+                })
+                .catch(error => {
+                    state.error = error.message;
+                });
         }
 
         // Triggered when account is changed in MM
         //
         ethereum.on('accountsChanged', async accounts => {
-            if (!accounts || !accounts.length) {
+            if (!accounts || accounts.length === 0) {
                 console.log(`Logged out of MetaMask`);
 
                 // Wipe everything when we "log out" of Metamask
@@ -171,7 +186,6 @@ export const Metamask = (props) => {
         });
 
         ethereum.autoRefreshOnNetworkChange = false;
-
     }, []);
 
     const firstRender = useRef(true);
@@ -187,10 +201,15 @@ export const Metamask = (props) => {
 
     return (
         <div>
-            {state.error ? (<div>Error</div>)
-                : !state.isLoggedIn ? (
-                    <button className="metamask-login" onClick={event => login(event)}>Sign in using MetaMask</button>
-                )
-                : (<div>{props.children}</div>)}
-        </div>);
-}
+            {state.error ? (
+                <div>Error</div>
+            ) : state.isLoggedIn ? (
+                <div>{children}</div>
+            ) : (
+                <button className="metamask-login" onClick={event => login(event)}>
+                    Sign in with Metamask
+                </button>
+            )}
+        </div>
+    );
+};
