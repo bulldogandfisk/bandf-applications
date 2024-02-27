@@ -25,7 +25,7 @@ export function Router({ state, loaded, errored }) {
                 <Route index element={<Start state={state} />} />
 
                 {/*A page*/}
-                <Route path="/page" element={<Page state={state} />} />
+                <Route path="/page" element={<Page state={state} imageUrl="https://wallpapers.com/images/featured/cat-g9rdx9uk2425fip2.jpg" />} />
 
                 <Route path="*" element={<Navigate to="/" />} />
             </Route>
