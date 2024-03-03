@@ -12,7 +12,8 @@ Implements a `Zoom` [meeting events webhook](https://developers.zoom.us/docs/api
 
 ### html
 
-A vanilla `JavaScript`, `HTML` and `CSS` application.
+Plain `HTML` starter kit for `B&F` applications.
+
 
 ### metamask-react
 

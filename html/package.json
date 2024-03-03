@@ -3,17 +3,16 @@
   "version": "1.0.0",
   "type": "module",
   "private": true,
-  "description": "Vanilla HTML, Javascript, CSS example",
-  "license": "AGPL-3.0-or-later",
+  "description": "Basic html example",
   "author": {
     "name": "Bulldog and Fisk",
     "email": "contact@bulldogandfisk.com",
     "url": "https://github.com/bulldogandfisk/bandf-applications"
   },
-  "engines": {
-    "node": ">=20"
-  },
+  "license": "AGPL-3.0-or-later",
   "scripts": {
     "test": ""
+  },
+  "devDependencies": {
   }
 }

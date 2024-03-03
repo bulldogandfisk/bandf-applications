@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "private": true,
-  "description": "Zoom webhook implementation",
+  "description": "No views just an API demonstrating a zoom webhook implementation",
   "license": "AGPL-3.0-or-later",
   "author": {
     "name": "Bulldog and Fisk",

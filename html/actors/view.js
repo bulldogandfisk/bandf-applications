@@ -1,6 +1,5 @@
 export default async ({ payload, STDLIB, Event, Context, Services, Channels }) => {
     const view = payload.params.viewName;
-    const flags = payload.params.flags;
 
     const { compiled } = await STDLIB.Compile({ view });
 

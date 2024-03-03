@@ -1,4 +1,5 @@
 # html
 
-A vanilla `JavaScript`, `HTML` and `CSS` application.
+Plain `HTML` starter kit for `B&F` applications.
+
 
