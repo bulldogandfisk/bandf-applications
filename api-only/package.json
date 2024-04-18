@@ -17,6 +17,6 @@
     "test": ""
   },
   "dependencies": {
-    "jsrsasign": "^10.8.6"
+    "jsrsasign": "^11.1.0"
   }
 }
