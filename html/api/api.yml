@@ -14,13 +14,8 @@ info:
 servers:
   - url: http://localhost:3000/dev
     description: Dev server
-tags:
-  - name: public
-    description: This is a public route.
-  - name: private
-    description: This is a private (authenticated) route.
 paths:
-  /view/{viewName}/{flags}:
+  /view/{viewName}:
     get:
       x-actor-id: view
       tags:
@@ -34,12 +29,6 @@ paths:
             type: string
           required: true
           description: The ui to view
-        - in: path
-          name: flags
-          schema:
-            type: string
-          description: |
-            Will slot any data following viewName
       responses:
         "200":
           $ref: "#/components/responses/200"

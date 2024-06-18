@@ -15,11 +15,6 @@ Implements a `Zoom` [meeting events webhook](https://developers.zoom.us/docs/api
 Plain `HTML` starter kit for `B&F` applications.
 
 
-### metamask-react
-
-A basic `React` application demonstrating `Metamask` login.
-
-
 ### react-basic
 
 A basic `React` setup.
@@ -29,3 +24,8 @@ A basic `React` setup.
 A reasonably comprehensive starter kit for `React` applications, including demonstrations of how to set up a `Router`, `i18n`, `MaterialUI` interfaces, themes, forms, state management, and more.
 
 Additionally, an example of using `bandf` `Services` to send mail, implementing a login system with emailed verification codes.
+### metamask-react
+
+A basic `React` application demonstrating `Metamask` login.
+
+

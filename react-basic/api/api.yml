@@ -15,14 +15,8 @@ info:
 servers:
   - url: http://localhost:3000/dev
     description: Dev server
-tags:
-  - name: tagexample
-    description: >
-      You can set tags here in the root or per-path.
-      If you do set path-level tags you need to define them here first.
-      See https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#operation-object
 paths:
-  /view/{viewName}/{flags}:
+  /view/{viewName}:
     get:
       x-actor-id: view
       description: >
@@ -34,12 +28,6 @@ paths:
             type: string
           required: true
           description: The ui to view
-        - in: path
-          name: flags
-          schema:
-            type: string
-          description: >
-            Will slot any data following viewName
       responses:
         "200":
           $ref: "#/components/responses/200"
