@@ -10,6 +10,9 @@
     "url": "https://github.com/bulldogandfisk"
   },
   "license": "AGPL-3.0-or-later",
+  "engines": {
+    "node": ">=22"
+  },
   "source": [
     "views/index.html"
   ],

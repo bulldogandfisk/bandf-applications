@@ -9,6 +9,9 @@
     "email": "contact@bulldogandfisk.com",
     "url": "https://github.com/bulldogandfisk/bandf-applications"
   },
+  "engines": {
+    "node": ">=22"
+  },
   "license": "AGPL-3.0-or-later",
   "scripts": {
     "test": ""
