@@ -3,10 +3,6 @@
 A collection of applications that can be dropped into a `bandf/apps` directory. Use `bulldog > create application` to import one or the other of them.
 
 # Available applications
-### react-basic
-
-A basic `React` setup.
-
 ### api-only
 
 An example of an `api-only` deployment -- no views, just a `REST` API.
@@ -14,15 +10,19 @@ An example of an `api-only` deployment -- no views, just a `REST` API.
 Implements a `Zoom` [meeting events webhook](https://developers.zoom.us/docs/api/rest/webhook-reference).
 
 
+### html
+
+Plain `HTML` starter kit for `B&F` applications.
+
+
 ### metamask-react
 
 A basic `React` application demonstrating `Metamask` login.
 
 
-### html
+### react-basic
 
-Plain `HTML` starter kit for `B&F` applications.
-
+A basic `React` setup.
 
 ### React - extended
 

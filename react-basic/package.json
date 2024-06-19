@@ -21,7 +21,6 @@
         "inlineEnvironment": true
     },
     "scripts": {
-        "start": "parcel --no-source-maps --cache-dir=.parcel-cache --no-cache --port 3001 --dist-dir views/dist --open",
         "build": "parcel build --no-source-maps --cache-dir=.parcel-cache --no-cache --dist-dir views/dist --log-level info --reporter @parcel/reporter-bundle-analyzer"
     },
     "devDependencies": {
