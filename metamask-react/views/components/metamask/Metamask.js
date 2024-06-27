@@ -9,7 +9,7 @@ export const Metamask = ({ children, store }) => {
 
     const Store = store();
 
-    const fetchJwtAndLogIn = async (userid, password) => {
+    const fetchJwtAndLogIn = async (userId, password) => {
         try {
             const fetchKey = 'bandf-fetch-config';
             const jwtKey = 'bandf-jwt';
@@ -49,7 +49,7 @@ export const Metamask = ({ children, store }) => {
             //
             if (nonce) {
                 const callBody = {
-                    userid,
+                    userId,
                     password
                 };
 
