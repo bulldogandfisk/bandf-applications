@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: react
+  title: react-material
   description: API definition
   version: 1.0.0
   license:

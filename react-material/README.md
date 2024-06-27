@@ -1,4 +1,4 @@
-# React - extended
+# react-material
 
 A reasonably comprehensive starter kit for `React` applications, including demonstrations of how to set up a `Router`, `i18n`, `MaterialUI` interfaces, themes, forms, state management, and more.
 
